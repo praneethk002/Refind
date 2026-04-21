@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background — dark navy blue, precise and professional */
+    --background: 220 20% 97%;
+    --foreground: 222 30% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 30% 12%;
+
+    /* Primary — deep indigo-blue, finance-grade */
+    --primary: 225 65% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 93%;
+    --secondary-foreground: 222 30% 22%;
+
+    --muted: 220 14% 93%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 225 65% 38%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 14% 88%;
+    --input: 220 14% 88%;
+    --ring: 225 65% 38%;
+
+    --radius: 0.5rem;
+
+    /* Tier colors */
+    --tier1: 142 72% 29%;
+    --tier1-bg: 142 72% 96%;
+    --tier2: 225 65% 38%;
+    --tier2-bg: 225 65% 95%;
+    --tier3: 35 92% 40%;
+    --tier3-bg: 35 92% 95%;
+  }
+
+  .dark {
+    --background: 222 28% 9%;
+    --foreground: 220 14% 88%;
+
+    --card: 222 28% 12%;
+    --card-foreground: 220 14% 88%;
+
+    --popover: 222 28% 12%;
+    --popover-foreground: 220 14% 88%;
+
+    --primary: 225 65% 60%;
+    --primary-foreground: 222 28% 9%;
+
+    --secondary: 222 20% 18%;
+    --secondary-foreground: 220 14% 75%;
+
+    --muted: 222 20% 18%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 225 65% 60%;
+    --accent-foreground: 222 28% 9%;
+
+    --destructive: 0 62% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 20% 22%;
+    --input: 222 20% 22%;
+    --ring: 225 65% 60%;
+
+    --tier1: 142 55% 45%;
+    --tier1-bg: 142 30% 14%;
+    --tier2: 225 55% 65%;
+    --tier2-bg: 225 30% 16%;
+    --tier3: 35 80% 55%;
+    --tier3-bg: 35 40% 14%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', 'Geist', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .hover-elevate {
+    transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hover-elevate:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px hsl(var(--foreground) / 0.08);
+  }
+  .active-elevate-2:active {
+    transform: translateY(0px) scale(0.99);
+  }
+  .no-default-active-elevate:active {
+    transform: none;
+  }
+  .toggle-elevate {
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .toggle-elevated {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px hsl(var(--foreground) / 0.1);
+  }
+
+  .tier-1-badge {
+    background-color: hsl(var(--tier1-bg));
+    color: hsl(var(--tier1));
+    border: 1px solid hsl(var(--tier1) / 0.25);
+  }
+  .tier-2-badge {
+    background-color: hsl(var(--tier2-bg));
+    color: hsl(var(--tier2));
+    border: 1px solid hsl(var(--tier2) / 0.25);
+  }
+  .tier-3-badge {
+    background-color: hsl(var(--tier3-bg));
+    color: hsl(var(--tier3));
+    border: 1px solid hsl(var(--tier3) / 0.25);
+  }
+}
+
+/* Shimmer skeleton */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 25%,
+    hsl(var(--secondary)) 50%,
+    hsl(var(--muted)) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 0.375rem;
+}
